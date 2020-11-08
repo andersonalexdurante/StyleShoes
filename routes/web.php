@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     if(session()->has('user')) {
@@ -56,3 +57,5 @@ Route::get('/admin', function() {
 Route::get('/cadastrar-produto', function() {
     return view('register_product');
 });
+
+Route::post('/cadastrar-produto', [ProductController::class, 'addProduct']);

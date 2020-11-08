@@ -4,7 +4,7 @@
     <h1 class="text-center text-light font-weight-bold mt-3">CADASTRO DE PRODUTO</h1>
     <div class="container col-8">
        
-        <form method="POST" action="/registerProduct">
+        <form method="POST" action="/cadastrar-produto" enctype="multipart/form-data">
             @csrf
             <div class="form-container">
                 <div class="form-group row">
@@ -37,15 +37,10 @@
                         <input type="number" class="form-control" id="inputPrice" name="price">
                     </div>
                 </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Upload</span>
-                    </div>
-                    <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="inputImage" name="image">
-                      <label class="custom-file-label" for="inputGroupFile01">Escolha a imagem do produto</label>
-                    </div>
-                </div>
+                <div class="custom-file mb-3">
+                    <input type="file" class="custom-file-input" name="file" id="file">
+                    <label class="custom-file-label" for="file">Escolha a imagem do produto</label>
+                  </div>
                 <button type="submit" class="btn-block btn-lg btn-primary">Cadastrar Produto</button>
             </div>
           </form>

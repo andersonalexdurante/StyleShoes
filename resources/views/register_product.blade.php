@@ -10,7 +10,7 @@
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Nome</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputName" name="nome">
+                        <input type="text" class="form-control" id="inputName" name="title">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -34,7 +34,7 @@
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Preço</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" id="inputPrice" name="price">
+                        <input type="number" step=".01" class="form-control" id="inputPrice" name="price">
                     </div>
                 </div>
                 <div class="custom-file mb-3">

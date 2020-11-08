@@ -1,0 +1,2 @@
+@extends('templates/nav-bar')
+

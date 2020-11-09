@@ -20,7 +20,7 @@
             </li>
             <li class="nav-item active">
                 <a href="/logout">
-                    <img class="nav-link" src="{{url('assets/log-out.svg')}}" alt="Profile">
+                    <img class="nav-link" src="{{url('assets/log-out.svg')}}" alt="Logout">
                 </a>
             </li>
             @if (session('user') === 'admin')
@@ -30,8 +30,7 @@
             @endif   
           </ul>
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Digite um produto" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Procurar</button>
+            
           </form>
         </div>
       </nav>

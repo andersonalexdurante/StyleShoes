@@ -4,39 +4,64 @@
     <h1 class="text-center text-light font-weight-bold mt-3">GERENCIAMENTO DE PRODUTOS</h1>
 
     <div class="text-center">
-        <a href="/cadastrar-produto">
-            <button type="button" class="btn btn-primary btn-lg m-3">Cadastrar Produto</button>
-        </a>
+      <a href="/register-product">
+          <button type="button" class="btn btn-primary btn-lg m-3">Cadastrar Produto</button>
+      </a>
 
-        <table class="table bg-light">
-            <thead>
+      <table class="table bg-light">
+          <thead>
+            <tr>
+              <th scope="col">Produto</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Marca</th>
+              <th scope="col">Operação</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($products as $product)
+              @php
+                $image = $product::find($product->id)->relImages;    
+              @endphp
               <tr>
-                <th scope="col"></th>
-                <th scope="col">Nome</th>
-                <th scope="col">Marca</th>
-                <th scope="col">Operação</th>
+              <td>
+                <img src="{{url('/storage/'.$image->title)}}" style="max-width: 120px; max-height: 120px:" width="auto" height="auto" alt="Imagem do Produto">
+              </td>
+                <td class="align-middle">{{$product->title}}</td>
+                <td class="align-middle">{{$product->category}}</td>
+                <td class="align-middle">
+                <a href="/update-product/{{$product->id}}">
+                    <img src="{{url('/assets/upgrade.svg')}}" height="30px" width="30px" alt="Atualizar">
+                  </a>
+                <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal{{$product->id}}">
+                    <img src="{{url('/assets/delete.svg')}}" height="30px" width="30px" alt="Apagar">
+                  </button>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </table>
+
+                    <!-- Modal -->
+            <div class="modal fade" id="exampleModal{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Apagar o modelo {{$product->title}}?</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                    <img src="{{url('/storage/'.$image->title)}}" style="max-width: 300px; max-height: 300px:" alt="{{$product->title}}">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                      <button type="button" class="btn btn-danger text-light"><a href="/delete-product/{{$product->id}}">Apagar</a></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @endforeach
+          </tbody>
+        </table>
+      
+
     </div>
 @endsection

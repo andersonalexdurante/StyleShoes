@@ -26,6 +26,15 @@ Route::get('/', function () {
 
 Route::post('/authenticate', [AuthController::class, 'authenticate']);
 
+Route::get('/admin', [AuthController::class, 'adminPage']);
+
+Route::get('/logout', function () {
+    if(session()->has('user')) {
+        session()->pull('user');
+        return redirect('/');
+    }
+});
+
 Route::get('/products', function () {
     if(session()->has('user')) {
         return view('/products');
@@ -35,16 +44,9 @@ Route::get('/products', function () {
     }
 });
 
-Route::get('/logout', function () {
-    if(session()->has('user')) {
-        session()->pull('user');
-        return redirect('/');
-    }
-});
-
-Route::get('/admin', function() {
+Route::get('/register-product', function() {
     if(session('user') === 'admin') {
-        return view('admin');
+        return view('register_product');
     }
     else if(session('user') !== 'admin' && session('user') !== null){
         return redirect('/products');
@@ -54,8 +56,12 @@ Route::get('/admin', function() {
     }
 });
 
-Route::get('/cadastrar-produto', function() {
-    return view('register_product');
-});
+Route::post('/register-product', [ProductController::class, 'addProduct']);
 
-Route::post('/cadastrar-produto', [ProductController::class, 'addProduct']);
+Route::get('/delete-product/{id}', [ProductController::class, 'deleteProduct']);
+
+Route::get('/delete-product/{id}', [ProductController::class, 'deleteProduct']);
+
+Route::get('/update-product/{id}', [ProductController::class, 'updateProductShow']);
+
+Route::post('/update-product/{id}', [ProductController::class, 'updateProduct']);

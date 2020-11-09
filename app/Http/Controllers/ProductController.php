@@ -73,11 +73,18 @@ class ProductController extends Controller
     }
 
     public function updateProductShow($id) {
-
-        $product = Product::find($id);
-        $image = Product::find($id)->relImages;
-
-        return view('update_product', compact('product', 'image'));
+        if(session('user') === 'admin') {
+            $product = Product::find($id);
+            $image = Product::find($id)->relImages;
+    
+            return view('update_product', compact('product', 'image'));
+        }
+        else if(session('user') !== null && session('user') !== 'admin') {
+            return redirect('/products');
+        }
+        else {
+            return redirect('/');
+        }
     }
 
     public function updateProduct(Request $request) {

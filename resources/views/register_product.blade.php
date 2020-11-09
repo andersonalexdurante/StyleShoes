@@ -1,7 +1,7 @@
 @extends('templates/nav-bar')
 
 @section('content')
-    <h1 class="text-center text-light font-weight-bold mt-3">CADASTRO DE PRODUTO</h1>
+    <h1 class="text-center text-dark font-weight-bold mt-3">CADASTRO DE PRODUTO</h1>
     <div class="container col-8">
        
         <form method="POST" action="/register-product" enctype="multipart/form-data">

@@ -1,7 +1,7 @@
 @extends('templates/nav-bar')
 
 @section('content')
-    <h1 class="text-center text-light font-weight-bold mt-3">GERENCIAMENTO DE PRODUTOS</h1>
+    <h1 class="text-center text-dark font-weight-bold mt-3">GERENCIAMENTO DE PRODUTOS</h1>
 
     <div class="text-center">
       <a href="/register-product">
@@ -23,9 +23,11 @@
                 $image = $product::find($product->id)->relImages;    
               @endphp
               <tr>
-              <td>
-                <img src="{{url('/storage/'.$image->title)}}" style="max-width: 120px; max-height: 120px:" width="auto" height="auto" alt="Imagem do Produto">
-              </td>
+                <td>
+                  <a href="/product/{{$product->id}}">
+                    <img src="{{url('/storage/'.$image->title)}}" style="max-width: 120px; max-height: 120px:" width="auto" height="auto" alt="Imagem do Produto">
+                  </a>
+                </td>
                 <td class="align-middle">{{$product->title}}</td>
                 <td class="align-middle">{{$product->category}}</td>
                 <td class="align-middle">

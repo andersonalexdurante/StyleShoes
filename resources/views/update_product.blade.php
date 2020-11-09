@@ -1,10 +1,10 @@
 @extends('templates/nav-bar')
 
 @section('content')
-    <h1 class="text-center text-light font-weight-bold mt-3">ATUALIZAR PRODUTO</h1>
+    <h1 class="text-center text-dark font-weight-bold mt-3">ATUALIZAR PRODUTO</h1>
     <div class="container col-8">
        
-    <form method="POST" action="/update-product/{{$product->id}}" enctype="multipart/form-data">
+        <form method="POST" action="/update-product/{{$product->id}}" enctype="multipart/form-data">
             @csrf
             <div class="form-container">
                 <div class="form-group row">
@@ -46,10 +46,10 @@
                     <input type="file" class="custom-file-input" name="file" id="file">
                     <label class="custom-file-label" for="file">Escolha a imagem do produto</label>
                     <p class="small mark" style="color: red">Se não quiser mudar a imagem é só não adicionar outra!</p>
-                  </div>
+                </div>
                 
                 <button type="submit" class="btn-block btn-lg btn-primary mt-3">Atualizar Produto</button>
             </div>
-          </form>
+        </form>
     </div>
 @endsection

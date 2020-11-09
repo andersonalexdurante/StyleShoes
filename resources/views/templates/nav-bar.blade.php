@@ -13,25 +13,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link">Bem vindo, {{session('user')}} <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <img class="nav-link" src="{{url('assets/user.svg')}}" alt="Profile">
-            </li>
-            <li class="nav-item active">
-                <a href="/logout">
-                    <img class="nav-link" src="{{url('assets/log-out.svg')}}" alt="Logout">
-                </a>
-            </li>
-            @if (session('user') === 'admin')
-            <li class="nav-item">
-                <a class="nav-link bg-success rounded text-light" href="/admin">Gerenciar Produtos</a>
-            </li>
-            @endif   
+              <a class="nav-link font-weight-bold">{{session('user')}} <span class="sr-only">(current)</span></a>
+            </li>   
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            
-          </form>
+          @if (session('user') === 'admin')
+            <li class="nav-item" style="list-style: none">
+              <a class="nav-link bg-success rounded text-light" href="/admin">Gerenciar Produtos</a>
+            </li>
+          @endif
+          <li class="nav-item active" style="list-style: none">
+            <img class="nav-link" src="{{url('assets/user.svg')}}" alt="Profile">
+          </li>
+          <li class="nav-item active" style="list-style: none">
+            <a href="/logout">
+              <img class="nav-link" src="{{url('assets/log-out.svg')}}" alt="Logout">
+            </a>
+          </li>
         </div>
       </nav>
 @endsection

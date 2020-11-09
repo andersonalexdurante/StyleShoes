@@ -13,7 +13,7 @@
             <tr>
               <th scope="col">Produto</th>
               <th scope="col">Nome</th>
-              <th scope="col">Marca</th>
+              <th scope="col">Categoria</th>
               <th scope="col">Operação</th>
             </tr>
           </thead>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                      <button type="button" class="btn btn-danger text-light"><a href="/delete-product/{{$product->id}}">Apagar</a></button>
+                      <button type="button" class="btn btn-danger text-light"><a class="text-light" href="/delete-product/{{$product->id}}">Apagar</a></button>
                     </div>
                   </div>
                 </div>

@@ -35,14 +35,9 @@ Route::get('/logout', function () {
     }
 });
 
-Route::get('/products', function () {
-    if(session()->has('user')) {
-        return view('/products');
-    }
-    else {
-        return redirect('/');
-    }
-});
+Route::get('/products', [ProductController::class, 'index']);
+
+Route::get('/product/{id}', [ProductController::class, 'show']);
 
 Route::get('/register-product', function() {
     if(session('user') === 'admin') {
@@ -57,8 +52,6 @@ Route::get('/register-product', function() {
 });
 
 Route::post('/register-product', [ProductController::class, 'addProduct']);
-
-Route::get('/delete-product/{id}', [ProductController::class, 'deleteProduct']);
 
 Route::get('/delete-product/{id}', [ProductController::class, 'deleteProduct']);
 

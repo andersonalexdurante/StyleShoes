@@ -5,10 +5,33 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Image;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
+
+    public function index(){
+        
+        if(session()->has('user')) {
+            $products = Product::all();
+            return view('products', compact('products'));
+        }
+        else {
+            return redirect('/');
+        }
+    }
+
+    public function show($id) {
+        if(session()->has('user')){
+            $product = Product::find($id);
+            $image = $product::find($product->id)->relImages;
+            return view('product_spec', compact('product', 'image'));
+        }
+        else {
+            return redirect('/');
+        }
+    }
 
     public function addProduct(Request $request) {
         Product::create([
@@ -34,11 +57,19 @@ class ProductController extends Controller
     }
 
     public function deleteProduct($id) {
-        $image = Product::find($id)->relImages;
-        Storage::delete(url('/storage/'.$image->title)); //deleta imagem na pasta
-
-        Product::where('id', '=', $id)->delete();
-        return redirect('/admin');
+        if(session('user') === 'admin') {
+            $image = Product::find($id)->relImages;
+            Storage::delete(url('/storage/'.$image->title)); //deleta imagem na pasta
+    
+            Product::where('id', '=', $id)->delete();
+            return redirect('/admin');
+        }
+        else if(session('user') !== null && session('user') !== 'admin') {
+            return redirect('/products');
+        }        
+        else {
+            return redirect('/');
+        }
     }
 
     public function updateProductShow($id) {

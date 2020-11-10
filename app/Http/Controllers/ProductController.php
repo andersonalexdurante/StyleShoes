@@ -22,18 +22,20 @@ class ProductController extends Controller
         }
     }
 
-    public function show($id) {
-        if(session()->has('user')){
-            $product = Product::find($id);
-            $image = $product::find($product->id)->relImages;
-            return view('product_spec', compact('product', 'image'));
+    public function create() {
+        $user = User::where('name', '=', session('user'))->first();
+        if($user->admin){
+            return view('register_product');
+        }
+        else if(session('user') !== 'admin' && session('user') !== null){
+            return redirect('/products');
         }
         else {
             return redirect('/');
         }
     }
 
-    public function addProduct(Request $request) {
+    public function store(Request $request) {
         Product::create([
             'title'=>$request->title,
             'category'=>$request->category,
@@ -56,7 +58,18 @@ class ProductController extends Controller
         return redirect('/products');
     }
 
-    public function deleteProduct($id) {
+    public function show($id) {
+        if(session()->has('user')){
+            $product = Product::find($id);
+            $image = $product::find($product->id)->relImages;
+            return view('product_spec', compact('product', 'image'));
+        }
+        else {
+            return redirect('/');
+        }
+    }
+
+    public function destroy($id) {
         if(session('user') === 'admin') {
             $image = Product::find($id)->relImages;
             Storage::delete(url('/storage/'.$image->title)); //deleta imagem na pasta

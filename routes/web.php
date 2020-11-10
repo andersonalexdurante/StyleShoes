@@ -25,44 +25,20 @@ Route::get('/', function () {
     }
 });
 
-Route::get('/register', function () {
-    if(session()->has('user')) {
-        return redirect('/products');
-    }
-    else {
-        return view('/register_user');
-    }
-});
-
-Route::post('/register', [UserController::class, 'create']);
+Route::get('/register', [UserController::class, 'create']);
+Route::post('/register', [UserController::class, 'store']);
 Route::post('/authenticate', [UserController::class, 'authenticate']);
 Route::get('/admin', [UserController::class, 'adminPage']);
-
-Route::get('/logout', function () {
-    if(session()->has('user')) {
-        session()->pull('user');
-        return redirect('/');
-    }
-});
+Route::get('/logout', [UserController::class, 'logout']);
 
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/product/{id}', [ProductController::class, 'show']);
-Route::get('/register-product', function() {
-    if(session('user') === 'admin') {
-        return view('register_product');
-    }
-    else if(session('user') !== 'admin' && session('user') !== null){
-        return redirect('/products');
-    }
-    else {
-        return redirect('/');
-    }
-});
-Route::post('/register-product', [ProductController::class, 'addProduct']);
-Route::get('/delete-product/{id}', [ProductController::class, 'deleteProduct']);
+Route::get('/register-product', [ProductController::class, 'create']);
+Route::post('/register-product', [ProductController::class, 'store']);
+Route::delete('/delete-product/{id}', [ProductController::class, 'destroy']);
 Route::get('/update-product/{id}', [ProductController::class, 'updateProductShow']);
-Route::post('/update-product/{id}', [ProductController::class, 'updateProduct']);
+Route::put('/update-product/{id}', [ProductController::class, 'updateProduct']);
 
-Route::get('/user/cart', [CartController::class, 'create']);
-Route::get('/product/buy/{id}', [CartController::class, 'store']);
-Route::get('/delete/cart/product/{id}', [CartController::class, 'destroy']);
+Route::get('/user/cart', [CartController::class, 'index']);
+Route::post('/product/buy/{id}', [CartController::class, 'store']);
+Route::delete('/delete/cart/product/{id}', [CartController::class, 'destroy']);

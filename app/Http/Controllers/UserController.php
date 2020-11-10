@@ -8,7 +8,17 @@ use App\Models\Product;
 use App\Models\Image;
 class UserController extends Controller
 {
-    public function create(Request $request) {
+
+    public function create(){
+        if(session()->has('user')) {
+            return redirect('/products');
+        }
+        else {
+            return view('/register_user');
+        }
+    }
+
+    public function store(Request $request) {
         User::create([
             'name'=>$request->name,
             'email'=>$request->email,
@@ -42,6 +52,13 @@ class UserController extends Controller
             return redirect('/products');
         }
         else {
+            return redirect('/');
+        }
+    }
+
+    public function logout() {
+        if(session()->has('user')) {
+            session()->pull('user');
             return redirect('/');
         }
     }

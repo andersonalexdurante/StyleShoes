@@ -34,10 +34,13 @@
             <div class="modal-body">
             <img src="{{url('/storage/'.$image->title)}}" style="max-width: 300px; max-height: 300px:" alt="{{$product->title}}">
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-warning text-light"><a class="text-dark" href="/product/buy/{{$product->id}}">Adicionar no carrinho</a></button>
-            </div>
+            <form action="/product/buy/{{$product->id}}" method="POST">
+                @csrf
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-warning text-light">Adicionar no carrinho</button>
+                </div>
+            </form>
             </div>
         </div>
         </div>

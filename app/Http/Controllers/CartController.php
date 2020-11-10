@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
-    public function create(){
+    public function index(){
         if(session()->has('user')) {
             $user = User::where('name', '=', session('user'))->first();
             $carts = User::find($user->id)->relCarts;
@@ -53,8 +53,6 @@ class CartController extends Controller
             else{
                 return redirect('/');
             }
-
-            
         }
         else {
             return redirect('/');

@@ -12,9 +12,9 @@
                         <div class="card-body">
                             <img src="{{url('/storage/'.$image->title)}}" width="100%" alt="Imagem do produto">
                             <h3 class="font-weight-bold">{{$product->title}}</h3>
-                            <button type="button" class="font-weight-bold btn btn-danger">
-                                <a class="text-light" href="/product/{{$product->id}}">SAIBA MAIS</a>
-                            </button>
+                            <form action="/product/{{$product->id}}" method="get">
+                                <button type="submit" class="font-weight-bold btn btn-danger">SAIBA MAIS</button>
+                            </form>
                         </div>
                     </div>
                 @endforeach

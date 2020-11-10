@@ -48,10 +48,15 @@
                             <div class="modal-body">
                             <img src="{{url('/storage/'.$image->title)}}" style="max-width: 300px; max-height: 300px:" alt="{{$product->title}}">
                             </div>
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-danger text-light"><a class="text-light" href="/delete/cart/product/{{$product->id}}">Apagar</a></button>
-                            </div>
+                            <form action="/delete/cart/product/{{$product->id}}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-danger text-light">Apagar</button>
+                                    </div>
+                            </form>
+                            
                         </div>
                         </div>
                     </div>

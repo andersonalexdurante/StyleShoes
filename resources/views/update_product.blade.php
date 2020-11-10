@@ -5,6 +5,7 @@
     <div class="container col-8">
        
         <form method="POST" action="/update-product/{{$product->id}}" enctype="multipart/form-data">
+            @method('PUT')
             @csrf
             <div class="form-container">
                 <div class="form-group row">

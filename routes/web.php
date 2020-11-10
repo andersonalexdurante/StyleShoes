@@ -42,3 +42,7 @@ Route::put('/update-product/{id}', [ProductController::class, 'updateProduct']);
 Route::get('/user/cart', [CartController::class, 'index']);
 Route::post('/product/buy/{id}', [CartController::class, 'store']);
 Route::delete('/delete/cart/product/{id}', [CartController::class, 'destroy']);
+
+Route::fallback(function() {
+    return redirect('/');
+});

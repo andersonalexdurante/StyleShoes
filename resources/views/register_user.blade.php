@@ -1,8 +1,8 @@
 @extends('templates/template')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center align-middle">
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
             <div class="col-md-6">
                 <h1 class="text-center">Cadastro</h1>
                 <form method="POST" action="/register">

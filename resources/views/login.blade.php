@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="image-logo">
+                <div class="text-center">
                     <img src={{url('assets/Logo-marca.png')}} class="p-4"  alt="Logo">
                 </div>
                 <form method="POST" action="/authenticate">

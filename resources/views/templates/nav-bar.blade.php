@@ -22,11 +22,16 @@
             {{session('user')}}
           </li>
           @if (session('user') === 'admin')
-            <li class="nav-item" style="list-style: none">
+            <li class="nav-item mr-3" style="list-style: none">
               <a class="nav-link bg-success rounded text-light" href="/admin">Gerenciar Produtos</a>
             </li>
           @endif
-         
+          <li class="nav-item" style="list-style: none">
+          <a class="nav-link bg-warning rounded" href="/user/cart">
+            <strong class="text-dark">Carrinho</strong>
+            <img src="{{url('/assets/cart.svg')}}" alt="Carrinho de compras">
+          </a>
+          </li>
           <li class="nav-item active" style="list-style: none">
             <a href="/logout">
               <img class="nav-link" src="{{url('assets/log-out.svg')}}" alt="Logout">

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 
 Route::get('/', function () {
     if(session()->has('user')) {
@@ -61,3 +62,7 @@ Route::post('/register-product', [ProductController::class, 'addProduct']);
 Route::get('/delete-product/{id}', [ProductController::class, 'deleteProduct']);
 Route::get('/update-product/{id}', [ProductController::class, 'updateProductShow']);
 Route::post('/update-product/{id}', [ProductController::class, 'updateProduct']);
+
+Route::get('/user/cart', [CartController::class, 'create']);
+Route::get('/product/buy/{id}', [CartController::class, 'store']);
+Route::get('/delete/cart/product/{id}', [CartController::class, 'destroy']);

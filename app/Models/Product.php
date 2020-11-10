@@ -13,4 +13,8 @@ class Product extends Model
     public function relImages() {
         return $this->hasOne('App\Models\Image', 'id_produto');
     }
+
+    public function relCarts() {
+        return $this->hasMany('App\Models\Carrinho', 'id_produto');
+    }
 }

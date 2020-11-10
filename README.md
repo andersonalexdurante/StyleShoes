@@ -62,7 +62,7 @@
  
  ## :cloud: Banco de dados
     - MySQL + InnoDB para as relações com chave-estrangeira.
-    - Usuário por default não é admin. O admin pode ser cadastrado a parte com SQL, utilizei o phpMyAdmin.
+    - Autenticação com admin: Email - admin@email.com / Password - admin || Ele já é criado automaticamente ao rodar as migrations.
     - Um produto possui uma imagem
     - Um carrinho é único, ele possui um usuário a quem pertence e o produto que ele deseja comprar. Poderia ser adicionado um atributo "quantidade", por exemplo.
  
